@@ -1,0 +1,100 @@
+#1.) Imports the random module, prints starting text, and sets parameters
+import random
+print("Game Begin, Round of 3, Rock, Paper, Scissors, says...\n")
+player = 0
+bot = 0
+rounds = 0
+while rounds < 3:
+
+  if player == 2 or bot == 2:
+    break
+
+  #2.) Setup of rounds
+  s = load_image()
+  rps = random.choice([0, 1, 2])
+
+  #3.) Tie condition
+  if s == rps:
+    if rps == 0:
+      rock_img = Image.open("rock-rock.jpg")
+      display(rock_img)
+      print ("You both chose Rock")
+    if rps == 1:
+      paper_img = Image.open("paper-paper.jpg")
+      display(paper_img)
+      print ("You both chose Paper")
+    if rps == 2:
+      scissors_img = Image.open("scissors-scissors.jpg")
+      display(scissors_img)
+      print ("You both chose Scissors")
+    print("Tie. Try again\n")
+
+  #4.) Win conditions
+  if rps == 0 and s == 1:
+    rounds += 1
+    rock_img = Image.open("paper-rock.jpg")
+    display(rock_img)
+    print ("You chose Paper")
+    print ("The computer chose Rock")
+    print("You win round " + str(rounds) + "\n")
+    player += 1
+  if rps == 2 and s == 0:
+    rounds += 1
+    scissors_img = Image.open("rock-scissors.jpg")
+    display(scissors_img)
+    print ("You chose Rock")
+    print ("The computer chose Scissors")
+    print("You win round " + str(rounds) + "\n")
+    player += 1
+  if rps == 1 and s == 2:
+    rounds += 1
+    paper_img = Image.open("scissors-paper.jpg")
+    display(paper_img)
+    print ("You chose Scissors")
+    print ("The computer chose Paper")
+    print("You win round " + str(rounds) + "\n")
+    player += 1
+
+  #5.)Lose conditions
+  if rps == 1 and s == 0:
+    rounds += 1
+    paper_img = Image.open("rock-paper.jpg")
+    display(paper_img)
+    print ("You chose Rock")
+    print ("The computer chose Paper")
+    print("You lost round " + str(rounds) + "\n")
+    bot += 1
+  if rps == 0 and s == 2:
+    rounds += 1
+    rock_img = Image.open("scissors-rock.jpg")
+    display(rock_img)
+    print ("You chose Scissors")
+    print ("The computer chose Rock")
+    print("You lost round " + str(rounds) + "\n")
+    bot += 1
+  if rps == 2 and s == 1:
+    rounds += 1
+    scissors_img = Image.open("paper-scissors.jpg")
+    display(scissors_img)
+    print ("You chose Paper")
+    print ("The computer chose Scissors")
+    print("You lost round " + str(rounds) + "\n")
+    bot += 1
+
+#Final results
+if player == 2 and bot == 1:
+  print("Congrats! You won 2-1, Nice job!")
+
+if bot == 2 and player == 1:
+  print("Boo, you lost 1-2, Nice try.")
+
+if player == 2 and bot == 0:
+    print("Congrats! You won 2 out of 3 rounds, Nice job!")
+
+if bot == 2 and player == 0:
+  print("Boo, the bot won 2 out of 3 rounds, Nice try.")
+
+
+
+
+
